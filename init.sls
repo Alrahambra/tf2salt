@@ -38,3 +38,9 @@ steamcmd_package_download_n_extract:
     - source: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
     - skip_verify: True
     - enforce_toplevel: False
+
+install_n_download_tf2_server_files:
+  cmd.run:
+    - runas: gameserver
+    - cwd: /home/gameserver/hlserver
+    - name: ./steamcmd.sh +login anonymous +force_install_dir ./tf2 +app_update 232250 +quit
