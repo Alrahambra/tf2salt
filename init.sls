@@ -44,3 +44,9 @@ install_n_download_tf2_server_files:
     - runas: gameserver
     - cwd: /home/gameserver/hlserver
     - name: ./steamcmd.sh +login anonymous +force_install_dir ./tf2 +app_update 232250 +quit
+
+server_basic_config:
+  file.managed:
+    - user: gameserver
+    - name: /home/gameserver/hlserver/tf2/tf/cfg/server.cfg
+    - source: salt://tf2salt/server.cfg
