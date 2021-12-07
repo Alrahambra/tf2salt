@@ -68,3 +68,14 @@ tf2_executer_script:
 /usr/lib/libcurl-gnutls.so.4:
   file.symlink:
   - target: /usr/lib/libcurl.so.4
+
+tf2_systemd_service:
+  file.managed:
+    - name: /etc/systemd/system/tf2server.service
+    - source: salt://tf2salt/tf2server.service
+
+systemd-reload:
+  cmd.run:
+   - name: systemctl --system daemon-reload
+   - onchanges:  
+     - file: tf2_systemd_service
