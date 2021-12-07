@@ -33,23 +33,33 @@ gameserver:
 
 steamcmd_package_download_n_extract:
   archive.extracted:
-    - user: gameserver
     - name: /home/gameserver/hlserver
     - source: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
     - skip_verify: True
+    - user: gameserver
+    - group: gameserver
     - enforce_toplevel: False
+    - extract_perms: False
+
+#Reason: archive.extracted did not seem to respect folder ownerships
+fix_steamcmd_packge_permissions:
+  cmd.run:
+    - name: chown -R gameserver:gameserver /home/gameserver/hlserver
+
+
 
 install_n_download_tf2_server_files:
   cmd.run:
     - runas: gameserver
     - cwd: /home/gameserver/hlserver
-    - name: ./steamcmd.sh +login anonymous +force_install_dir ./tf2 +app_update 232250 +quit
+    - name: /home/gameserver/hlserver/steamcmd.sh +login anonymous +force_install_dir ./tf2 +app_update 232250 +quit
 
 server_basic_config:
   file.managed:
     - user: gameserver
     - name: /home/gameserver/hlserver/tf2/tf/cfg/server.cfg
     - source: salt://tf2salt/server.cfg
+    - makedirs: True
 
 tf2_executer_script:
   file.managed:
