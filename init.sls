@@ -31,9 +31,10 @@ gameserver:
     - user: gameserver
     - name: /home/gameserver/hlserver
 
-steamcmd_package_download:
-  cmd.run:
-    - name: wget -O /home/gameserver/hlserver/steamcmd_linux.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
-    - creates: /home/gameserver/hlserver/steamcmd_linux.tar.gz
-
-    
+steamcmd_package_download_n_extract:
+  archive.extracted:
+    - user: gameserver
+    - name: /home/gameserver/hlserver
+    - source: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+    - skip_verify: True
+    - enforce_toplevel: False
