@@ -57,3 +57,14 @@ tf2_executer_script:
     - mode: 0764
     - name: /home/gameserver/hlserver/tf2.sh
     - source: salt://tf2salt/tf2.sh
+
+#SteamSDK32BIT symlink fix
+/home/gameserver/.steam/sdk32:
+  file.symlink:
+    - target: /home/gameserver/hlserver/tf2/bin
+    - user: gameserver
+
+#LIBCURL symlink fix
+/usr/lib/libcurl-gnutls.so.4:
+  file.symlink:
+  - target: /usr/lib/libcurl.so.4
