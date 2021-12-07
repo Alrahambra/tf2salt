@@ -50,3 +50,10 @@ server_basic_config:
     - user: gameserver
     - name: /home/gameserver/hlserver/tf2/tf/cfg/server.cfg
     - source: salt://tf2salt/server.cfg
+
+tf2_executer_script:
+  file.managed:
+    - user: gameserver
+    - mode: 0764
+    - name: /home/gameserver/hlserver/tf2.sh
+    - source: salt://tf2salt/tf2.sh
