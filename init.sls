@@ -22,3 +22,18 @@ dep_packages:
       - ncurses-libs.x86_64
       - wget.x86_64
       - zlib.i686
+
+gameserver:
+  user.present
+
+/home/gameserver/:
+  file.directory:
+    - user: gameserver
+    - name: /home/gameserver/hlserver
+
+steamcmd_package_download:
+  cmd.run:
+    - name: wget -O /home/gameserver/hlserver/steamcmd_linux.tar.gz https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+    - creates: /home/gameserver/hlserver/steamcmd_linux.tar.gz
+
+    
