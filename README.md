@@ -8,6 +8,10 @@ The meaning of this project is to provide orchestrated way to provision and prep
 - Configuration should be made easier, if possible
 - At the moment, based on Vagrant deployed testing it should be possible to deploy this on a freshly installed CentOS 8.3 server without any issues
 - More official Steam support could be added, if wanted
+- More usage instructions on how to run on minion
+- Attempt to implement autoupdate on startup to minimize maintenance
+- modify service-file further to handle restarts better
+- publish Vagrantfile for testing as well
 
 
 ## Deployment
