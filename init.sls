@@ -99,3 +99,14 @@ systemd-reload:
    - name: systemctl --system daemon-reload
    - onchanges:  
      - file: tf2_systemd_service
+
+
+#Minimum firewall configuration to allow required ports!
+public:
+  firewalld.present:
+    - name: public
+    - default: False
+    - masquerade: False
+    - ports:
+      - 27015/tcp
+      - 27015/udp
