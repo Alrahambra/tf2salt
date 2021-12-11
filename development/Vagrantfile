@@ -1,0 +1,27 @@
+# Vagrantfile
+# CentOS 8 Variant by Juho Mikkonen 2021
+# This installs also salt-minion service
+# Remember to change the Salt master from 192.168.8.100 to suit your networks!
+# ====
+# Based on 2018 Tero Karvinen http://TeroKarvinen.com ->
+# http://terokarvinen.com/2017/provision-multiple-virtual-puppet-slaves-with-vagrant
+$tscript = <<TSCRIPT
+touch /tmp/tf2vagrant_test
+sudo rpm --import https://repo.saltproject.io/py3/redhat/8/x86_64/latest/SALTSTACK-GPG-KEY.pub
+curl -fsSL https://repo.saltproject.io/py3/redhat/8/x86_64/latest.repo | sudo tee /etc/yum.repos.d/salt.repo
+sudo yum clean expire-cache
+sudo dnf upgrade --refresh -y
+sudo dnf install salt-minion -y
+echo -e "master: 192.168.8.100\nid: tf2salt-$(uuidgen)" | sudo tee /etc/salt/minion
+sudo systemctl enable salt-minion.service > /dev/null 2>&1
+sudo systemctl start salt-minion > /dev/null 2>&1
+TSCRIPT
+Vagrant.configure("2") do |config|
+ config.vm.box = "bento/centos-8.3"
+ config.vm.network "private_network", type: "dhcp"
+ config.vm.provision "shell", inline: $tscript
+config.vm.provider "virtualbox" do |v|
+  v.memory = 4096
+  v.cpus = 3
+end
+end
