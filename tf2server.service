@@ -1,15 +1,15 @@
 [Unit]
 Description=Team Fortress 2 server
-RefuseManualStart=no
-RefuseManualStop=yes
 
 [Service]
 Type=simple
 User=gameserver
+Group=gameserver
+Restart=on-failure
+RestartSec=30s
 ExecStart=/bin/sh /home/gameserver/hlserver/tf2.sh
 
-StandardOutput=/var/log/tf2-server-standard.log
-StandardError=/var/log/tf2-server-error.log
+SyslogIdentifier=TF2Server
 
 [Install]
 WantedBy=multi-user.target
