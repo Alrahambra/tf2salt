@@ -8,5 +8,8 @@ Type=simple
 User=gameserver
 ExecStart=/bin/sh /home/gameserver/hlserver/tf2.sh
 
+StandardOutput=/var/log/tf2-server-standard.log
+StandardError=/var/log/tf2-server-error.log
+
 [Install]
 WantedBy=multi-user.target

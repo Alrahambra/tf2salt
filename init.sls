@@ -47,12 +47,22 @@ fix_steamcmd_packge_permissions:
     - name: chown -R gameserver:gameserver /home/gameserver/hlserver
 
 
-
+#Runs only if assumes the initial setup has been done...
 install_n_download_tf2_server_files:
   cmd.run:
     - runas: gameserver
     - cwd: /home/gameserver/hlserver
     - name: /home/gameserver/hlserver/steamcmd.sh +login anonymous +force_install_dir ./tf2 +app_update 232250 +quit
+    - creates:
+      - /home/gameserver/hlserver/tf2/tf/gameinfo.txt
+
+#See tf2.sh, required by -autoupdate parameter
+server_updating_script_config:
+  file.managed:
+    - user: gameserver
+    - name: /home/gameserver/hlserver/tf2_ds.txt
+    - source: salt://tf2salt/tf2_ds.txt
+    - makedirs: True
 
 server_basic_config:
   file.managed:
