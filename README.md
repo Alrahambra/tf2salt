@@ -42,6 +42,17 @@ During testing it was found, that the following system requirements should suffi
 - 4096 MB of RAM
 - At least 25 GB of disk space
 
+## Configuration tips and information about SteamCMD
+
+For Team Fortress 2 Linux Dedicated server information, you may look here, for example about firewall configuration which is not covered here:
+
+https://wiki.teamfortress.com/wiki/Linux_dedicated_server
+
+For the more extensive guide on SteamCMD, you may look here:
+
+https://developer.valvesoftware.com/wiki/SteamCMD
+
+
 ## Screenshot
 
 Below you may see the project up and running after the state file has been executed via Salt master, and that the SystemD service file is working correctly.
