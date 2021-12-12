@@ -42,6 +42,17 @@ During testing it was found, that the following system requirements should suffi
 - 4096 MB of RAM
 - At least 25 GB of disk space
 
+## Default firewalld -configuration
+
+The following firewalld -configuration is offered in this project automatically. To allow SSH traffic, Salt-traffic and the game server traffic:
+
+- 27015/tcp
+- 27015/udp
+- 4506/tcp
+- 4505/tcp
+- 22/tcp
+- 22/udp
+
 ## Configuration tips and information about SteamCMD
 
 For Team Fortress 2 Linux Dedicated server information, you may look here, for example about firewall configuration which is not covered here:
