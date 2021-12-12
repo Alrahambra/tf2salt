@@ -18,6 +18,10 @@ You may want to specify an alternative source for the GPG file if you plan to us
 
 You may follow the main deployment instructions to apply states to this minion enabled machine.
 
+## Tips
+
+You may use parts of the Vagrantfile to e.g. create your own initialization scripts, for example to deploy this in a public cloud.
+
 ## Destroying
 
 After you're done with testing, you may issue:
