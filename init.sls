@@ -105,7 +105,6 @@ firewalld:
   service.running:
     - enable: True
 
-
 #Minimum firewall configuration to allow required ports for TF2 server
 public:
   firewalld.present:
@@ -119,5 +118,3 @@ public:
       - 4505/tcp
       - 22/tcp
       - 22/udp
-
-  
