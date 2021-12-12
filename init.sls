@@ -100,8 +100,13 @@ systemd-reload:
    - onchanges:  
      - file: tf2_systemd_service
 
+#Ennsure CentOS firewalld is enabled
+firewalld:
+  service.running:
+    - enable: True
 
-#Minimum firewall configuration to allow required ports!
+
+#Minimum firewall configuration to allow required ports for TF2 server
 public:
   firewalld.present:
     - name: public
@@ -110,3 +115,9 @@ public:
     - ports:
       - 27015/tcp
       - 27015/udp
+      - 4506/tcp
+      - 4505/tcp
+      - 22/tcp
+      - 22/udp
+
+  
